@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en"> 
+ <head> 
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+  <title>Ramadan 2026 - BAGIA'S</title> 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"> 
+  <style>
+        body {
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: #00006b;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 25px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.3);
+            text-align: center;
+            width: 90%;
+            max-width: 450px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        .brand-name {
+            font-weight: bold;
+            color: #000000;
+            letter-spacing: 2px;
+            margin-top: 10px;
+            font-size: 1.6rem;
+        }
+        .brand-subtext {
+            color: #000000;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+        }
+        h1 {
+            color: #4682B4; 
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+        }
+        .roza-badge {
+            background: #4682B4; 
+            color: #ffffff;
+            padding: 5px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        .english-date {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: #222;
+            margin: 10px 0;
+        }
+        .islamic-date {
+            font-size: 1.8rem;
+            color: #4682B4; 
+            margin-bottom: 30px;
+        }
+        .timings-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+        .label {
+            font-size: 0.75rem;
+            color: #888;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            display: block;
+        }
+        .time-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #333;
+        }
+        .nav-buttons {
+            margin-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        button {
+            background: #4682B4; 
+            color: #ffffff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: 0.3s;
+            flex: 1;
+        }
+        button:hover { 
+            background: #36648B; 
+        }
+        .start-btn {
+            background: #4682B4;
+            color: white;
+            width: 100%;
+            font-size: 1.2rem;
+        }
+        .hidden { display: none !important; }
+        
+        /* Footer Styles */
+        .footer-section {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px dashed #ddd;
+            font-size: 0.85rem;
+            color: #777;
+        }
+        .ismail-credit {
+            display: inline-block;
+            margin-top: 8px;
+            font-weight: 600;
+            color: #333;
+            text-decoration: none;
+        }
+        .social-icon {
+            font-size: 1.3rem;
+            vertical-align: middle;
+            margin: 0 10px;
+            transition: transform 0.2s;
+        }
+        .linkedin-color { color: #0077b5; }
+        .youtube-color { color: #FF0000; }
+        .social-icon:hover { transform: scale(1.2); }
+    </style> 
+ </head> 
+ <body> 
+  <div id="welcome-screen" class="card"> 
+   <h1>🌙 Ramadan Mubarak</h1> 
+   <div class="brand-name">
+     BAGIA'S 
+   </div> 
+   <div class="brand-subtext">
+     -Frozen Foods- 
+   </div> 
+   <p>Click next to see full timetable</p> <button class="start-btn" onclick="startApp()">Next</button> 
+   <div class="footer-section">
+     Made by <b>Ismail Bagia</b> <a href="https://www.linkedin.com/in/ismail-bagia-85a390398" target="_blank" rel="noopener noreferrer"> <i class="fab fa-linkedin social-icon linkedin-color"></i> </a> <a href="https://youtube.com/@progang-786i?si=iisnoAUxCv2wgFzl" target="_blank" rel="noopener noreferrer"> <i class="fab fa-youtube social-icon youtube-color"></i> </a> 
+   </div> 
+  </div> 
+  <div id="calendar-card" class="card hidden"> 
+   <div id="roza-num" class="roza-badge"></div> 
+   <div id="eng-date" class="english-date"></div> 
+   <div id="isl-date" class="islamic-date"></div> 
+   <div class="timings-container"> 
+    <div> <span class="label">Sehri Ends</span> <span id="sahri-time" class="time-value"></span> 
+    </div> 
+    <div> <span class="label">Iftar Time</span> <span id="iftar-time" class="time-value"></span> 
+    </div> 
+   </div> 
+   <div class="nav-buttons"> <button id="prevBtn" onclick="changeDay(-1)">Previous</button> <button id="nextBtn" onclick="changeDay(1)">Next</button> 
+   </div> 
+   <div class="footer-section"> 
+    <div>
+      by BAGIA'S -Home Made Foods-and also remember us in your precious dua 
+    </div> <a href="https://www.linkedin.com/in/ismail-bagia-85a390398" target="_blank" rel="noopener noreferrer" class="ismail-credit"> Made by Ismail Bagia <i class="fab fa-linkedin social-icon linkedin-color"></i> </a> <a href="https://youtube.com/@progang-786i?si=iisnoAUxCv2wgFzl" target="_blank" rel="noopener noreferrer"> <i class="fab fa-youtube social-icon youtube-color"></i> </a> 
+   </div> 
+  </div> 
+  <div id="eid-screen" class="card hidden"> 
+   <div class="brand-name" style="font-size: 2rem;">
+     BAGIA'S 
+   </div> 
+   <div style="font-size: 1.2rem;">
+     -Frozen Foods- 
+   </div> 
+   <h1 style="color: #4682B4; font-size: 2.5rem; margin-top: 10px;">🌙 Eid Mubarak!</h1> 
+   <p style="color: #666; margin-top: 20px;">May this Eid bring joy, peace, and prosperity to you and your family.</p> <button class="start-btn" style="margin-top:20px;" onclick="resetToStart()">Back to Start</button> 
+   <div class="footer-section">
+     Made by <b>Ismail Bagia</b> <a href="https://www.linkedin.com/in/ismail-bagia-85a390398" target="_blank" rel="noopener noreferrer"> <i class="fab fa-linkedin social-icon linkedin-color"></i> </a> <a href="https://youtube.com/@progang-786i?si=iisnoAUxCv2wgFzl" target="_blank" rel="noopener noreferrer"> <i class="fab fa-youtube social-icon youtube-color"></i> </a> 
+   </div> 
+  </div> 
+  <script>
+    const ramadanData = [
+        { day: 1, eng: "19 Feb", date: "2026-02-19", isl: "1 Ramadan", sahri: "05:42 AM", iftar: "06:43 PM" },
+        { day: 2, eng: "20 Feb", date: "2026-02-20", isl: "2 Ramadan", sahri: "05:42 AM", iftar: "06:44 PM" },
+        { day: 3, eng: "21 Feb", date: "2026-02-21", isl: "3 Ramadan", sahri: "05:41 AM", iftar: "06:44 PM" },
+        { day: 4, eng: "22 Feb", date: "2026-02-22", isl: "4 Ramadan", sahri: "05:40 AM", iftar: "06:45 PM" },
+        { day: 5, eng: "23 Feb", date: "2026-02-23", isl: "5 Ramadan", sahri: "05:40 AM", iftar: "06:45 PM" },
+        { day: 6, eng: "24 Feb", date: "2026-02-24", isl: "6 Ramadan", sahri: "05:39 AM", iftar: "06:46 PM" },
+        { day: 7, eng: "25 Feb", date: "2026-02-25", isl: "7 Ramadan", sahri: "05:38 AM", iftar: "06:46 PM" },
+        { day: 8, eng: "26 Feb", date: "2026-02-26", isl: "8 Ramadan", sahri: "05:38 AM", iftar: "06:47 PM" },
+        { day: 9, eng: "27 Feb", date: "2026-02-27", isl: "9 Ramadan", sahri: "05:37 AM", iftar: "06:47 PM" },
+        { day: 10, eng: "28 Feb", date: "2026-02-28", isl: "10 Ramadan", sahri: "05:36 AM", iftar: "06:47 PM" },
+        { day: 11, eng: "01 Mar", date: "2026-03-01", isl: "11 Ramadan", sahri: "05:35 AM", iftar: "06:48 PM" },
+        { day: 12, eng: "02 Mar", date: "2026-03-02", isl: "12 Ramadan", sahri: "05:35 AM", iftar: "06:48 PM" },
+        { day: 13, eng: "03 Mar", date: "2026-03-03", isl: "13 Ramadan", sahri: "05:34 AM", iftar: "06:49 PM" },
+        { day: 14, eng: "04 Mar", date: "2026-03-04", isl: "14 Ramadan", sahri: "05:33 AM", iftar: "06:49 PM" },
+        { day: 15, eng: "05 Mar", date: "2026-03-05", isl: "15 Ramadan", sahri: "05:32 AM", iftar: "06:49 PM" },
+        { day: 16, eng: "06 Mar", date: "2026-03-06", isl: "16 Ramadan", sahri: "05:32 AM", iftar: "06:50 PM" },
+        { day: 17, eng: "07 Mar", date: "2026-03-07", isl: "17 Ramadan", sahri: "05:31 AM", iftar: "06:50 PM" },
+        { day: 18, eng: "08 Mar", date: "2026-03-08", isl: "18 Ramadan", sahri: "05:30 AM", iftar: "06:50 PM" },
+        { day: 19, eng: "09 Mar", date: "2026-03-09", isl: "19 Ramadan", sahri: "05:29 AM", iftar: "06:51 PM" },
+        { day: 20, eng: "10 Mar", date: "2026-03-10", isl: "20 Ramadan", sahri: "05:28 AM", iftar: "06:51 PM" },
+        { day: 21, eng: "11 Mar", date: "2026-03-11", isl: "21 Ramadan", sahri: "05:27 AM", iftar: "06:52 PM" },
+        { day: 22, eng: "12 Mar", date: "2026-03-12", isl: "22 Ramadan", sahri: "05:27 AM", iftar: "06:52 PM" },
+        { day: 23, eng: "13 Mar", date: "2026-03-13", isl: "23 Ramadan", sahri: "05:26 AM", iftar: "06:52 PM" },
+        { day: 24, eng: "14 Mar", date: "2026-03-14", isl: "24 Ramadan", sahri: "05:25 AM", iftar: "06:53 PM" },
+        { day: 25, eng: "15 Mar", date: "2026-03-15", isl: "25 Ramadan", sahri: "05:24 AM", iftar: "06:53 PM" },
+        { day: 26, eng: "16 Mar", date: "2026-03-16", isl: "26 Ramadan", sahri: "05:23 AM", iftar: "06:53 PM" },
+        { day: 27, eng: "17 Mar", date: "2026-03-17", isl: "27 Ramadan", sahri: "05:22 AM", iftar: "06:54 PM" },
+        { day: 28, eng: "18 Mar", date: "2026-03-18", isl: "28 Ramadan", sahri: "05:21 AM", iftar: "06:54 PM" },
+        { day: 29, eng: "19 Mar", date: "2026-03-19", isl: "29 Ramadan", sahri: "05:20 AM", iftar: "06:54 PM" },
+        { day: 30, eng: "20 Mar", date: "2026-03-20", isl: "30 Ramadan", sahri: "05:19 AM", iftar: "06:55 PM" }
+    ];
+
+    let currentIndex = 0;
+
+    function startApp() {
+        document.getElementById('welcome-screen').classList.add('hidden');
+        document.getElementById('calendar-card').classList.remove('hidden');
+        document.getElementById('eid-screen').classList.add('hidden');
+        
+        // Auto-detect today's date within the Ramadan array
+        const today = new Date().toISOString().split('T')[0];
+        const todayIndex = ramadanData.findIndex(item => item.date === today);
+        
+        if (todayIndex !== -1) {
+            currentIndex = todayIndex;
+        } else {
+            currentIndex = 0;
+        }
+        
+        updateUI();
+    }
+
+    function resetToStart() {
+        document.getElementById('eid-screen').classList.add('hidden');
+        document.getElementById('calendar-card').classList.add('hidden');
+        document.getElementById('welcome-screen').classList.remove('hidden');
+        currentIndex = 0;
+    }
+
+    function changeDay(step) {
+        if (currentIndex === 0 && step === -1) {
+            resetToStart();
+            return;
+        }
+
+        if (currentIndex === ramadanData.length - 1 && step === 1) {
+            document.getElementById('calendar-card').classList.add('hidden');
+            document.getElementById('eid-screen').classList.remove('hidden');
+            return;
+        }
+
+        currentIndex += step;
+        updateUI();
+    }
+
+    function updateUI() {
+        const data = ramadanData[currentIndex];
+        document.getElementById('roza-num').innerText = "🕋 Roza " + data.day + " 🕋";
+        document.getElementById('eng-date').innerText = data.eng;
+        document.getElementById('isl-date').innerText = data.isl + " 1447";
+        document.getElementById('sahri-time').innerText = data.sahri;
+        document.getElementById('iftar-time').innerText = data.iftar;
+    }
+</script> 
+ </body>
+</html>
